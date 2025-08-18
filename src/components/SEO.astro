@@ -1,0 +1,103 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string | URL;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: string;
+  };
+  twitter?: {
+    card?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    creator?: string;
+  };
+  structuredData?: object;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalURL = Astro.url,
+  openGraph = {},
+  twitter = {},
+  structuredData,
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+// Default values
+const ogTitle = openGraph.title || title;
+const ogDescription = openGraph.description || description;
+const ogImage = openGraph.image || '/og-image.jpg';
+const ogType = openGraph.type || 'website';
+
+const twitterCard = twitter.card || 'summary_large_image';
+const twitterTitle = twitter.title || title;
+const twitterDescription = twitter.description || description;
+const twitterImage = twitter.image || ogImage;
+const twitterCreator = twitter.creator || '@mackybeltran';
+
+// Robots meta
+const robots = [];
+if (noindex) robots.push('noindex');
+if (nofollow) robots.push('nofollow');
+if (robots.length === 0) robots.push('index, follow');
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={robots.join(', ')} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Macky Beltran's Portfolio" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content={twitterCard} />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={twitterTitle} />
+<meta property="twitter:description" content={twitterDescription} />
+<meta property="twitter:image" content={twitterImage} />
+<meta property="twitter:creator" content={twitterCreator} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="author" content="Macky Beltran" />
+<meta
+  name="keywords"
+  content="portfolio, web developer, frontend, astro, react, javascript"
+/>
+<meta name="theme-color" content="#667eea" />
+
+<!-- Structured Data -->
+{
+  structuredData && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  )
+}
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="/manifest.json" />

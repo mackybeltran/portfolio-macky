@@ -1,16 +1,97 @@
 ---
+// This is the frontmatter section - you can add JavaScript here
+import SEO from '../components/SEO.astro';
+import Analytics from '../components/Analytics.astro';
 
+const greeting = 'Hello World!';
+const currentDate = new Date().toLocaleDateString();
+
+// SEO metadata
+const title = 'Macky Beltran - Full Stack Developer & Designer';
+const description =
+  'Professional portfolio showcasing web development projects, skills, and experience. Specializing in modern web technologies including React, Astro, and responsive design.';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Structured data for rich snippets
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Macky Beltran',
+  jobTitle: 'Full Stack Developer',
+  description:
+    'Passionate web developer creating modern, responsive web applications',
+  url: Astro.site?.href,
+  sameAs: [
+    'https://github.com/mackybeltran',
+    'https://linkedin.com/in/mackybeltran',
+    'https://twitter.com/mackybeltran',
+  ],
+  knowsAbout: [
+    'Web Development',
+    'React',
+    'JavaScript',
+    'TypeScript',
+    'Astro',
+    'CSS',
+    'HTML',
+  ],
+};
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonicalURL={canonicalURL}
+      structuredData={structuredData}
+      openGraph={{
+        title: 'Macky Beltran - Full Stack Developer Portfolio',
+        description:
+          'Explore my web development projects and professional experience',
+        image: '/og-image.jpg',
+        type: 'website',
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: 'Macky Beltran - Full Stack Developer',
+        description: 'Professional web developer portfolio',
+        image: '/og-image.jpg',
+        creator: '@mackybeltran',
+      }}
+    />
+
+    <link rel="stylesheet" href="../styles/global.css" />
+    <Analytics />
+  </head>
+  <body>
+    <div class="container">
+      <h1>{greeting}</h1>
+      <p class="subtitle">Welcome to my Astro-powered portfolio!</p>
+
+      <p>Today is: <strong>{currentDate}</strong></p>
+
+      <div class="features">
+        <div class="feature">
+          <h3>🚀 Fast</h3>
+          <p>Zero JavaScript by default means lightning-fast loading times.</p>
+        </div>
+        <div class="feature">
+          <h3>🎨 Beautiful</h3>
+          <p>Modern CSS with gradients and glassmorphism effects.</p>
+        </div>
+        <div class="feature">
+          <h3>📱 Responsive</h3>
+          <p>Looks great on all devices with responsive design.</p>
+        </div>
+      </div>
+
+      <p class="footer-text">Built with ❤️ using Astro</p>
+    </div>
+  </body>
 </html>
