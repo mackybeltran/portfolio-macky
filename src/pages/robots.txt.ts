@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ site }) => {
+  const baseUrl = site?.href || 'https://yourdomain.com';
   const robotsTxt = `User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: ${new URL('/sitemap.xml', Astro.site).href}
+Sitemap: ${new URL('/sitemap.xml', baseUrl).href}
 
 # Disallow admin or private areas (if any)
 Disallow: /admin/

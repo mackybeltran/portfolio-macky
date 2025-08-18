@@ -27,14 +27,15 @@ const pages = [
   },
 ];
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ site }) => {
+  const baseUrl = site?.href || 'https://yourdomain.com';
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${pages
     .map(
       page => `
   <url>
-    <loc>${new URL(page.url, Astro.site).href}</loc>
+    <loc>${new URL(page.url, baseUrl).href}</loc>
     <lastmod>${page.lastmod.toISOString()}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>

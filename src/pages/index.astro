@@ -10,7 +10,10 @@ const currentDate = new Date().toLocaleDateString();
 const title = 'Macky Beltran - Full Stack Developer & Designer';
 const description =
   'Professional portfolio showcasing web development projects, skills, and experience. Specializing in modern web technologies including React, Astro, and responsive design.';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || 'https://yourdomain.com'
+);
 
 // Structured data for rich snippets
 const structuredData = {
@@ -20,7 +23,7 @@ const structuredData = {
   jobTitle: 'Full Stack Developer',
   description:
     'Passionate web developer creating modern, responsive web applications',
-  url: Astro.site?.href,
+  url: Astro.site?.href || 'https://yourdomain.com',
   sameAs: [
     'https://github.com/mackybeltran',
     'https://linkedin.com/in/mackybeltran',
