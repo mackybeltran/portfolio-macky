@@ -2,6 +2,7 @@
 // This is the frontmatter section - you can add JavaScript here
 import SEO from '../components/SEO.astro';
 import Analytics from '../components/Analytics.astro';
+import '../styles/global.css';
 
 const greeting = 'Hello World!';
 const currentDate = new Date().toLocaleDateString();
@@ -69,7 +70,6 @@ const structuredData = {
       }}
     />
 
-    <link rel="stylesheet" href="../styles/global.css" />
     <Analytics />
   </head>
   <body>
