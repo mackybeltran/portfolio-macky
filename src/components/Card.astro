@@ -1,0 +1,177 @@
+---
+// Card component with two different layouts
+export interface Props {
+  layout: 'simple' | 'complex';
+  title: string;
+  content: string;
+}
+
+const { layout, title, content } = Astro.props;
+---
+
+<div class={`card card-${layout}`}>
+  {
+    layout === 'simple' && (
+      <div class="card-simple">
+        <div class="card-content">
+          <h2>{title}</h2>
+          <p>{content}</p>
+        </div>
+        <div class="card-image">
+          <div class="placeholder-image">
+            <span>Image Placeholder</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    layout === 'complex' && (
+      <div class="card-complex">
+        <div class="card-main">
+          <div class="card-content">
+            <h2>{title}</h2>
+            <p>{content}</p>
+          </div>
+          <div class="card-image">
+            <div class="placeholder-image">
+              <span>Image Placeholder</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="bottom-column">
+            <h3>Section One</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="bottom-column">
+            <h3>Section Two</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          </div>
+          <div class="bottom-column">
+            <h3>Section Three</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate.</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-simple {
+    display: flex;
+    min-height: 500px;
+  }
+
+  .card-complex {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+  }
+
+  .card-content {
+    flex: 1;
+    padding: 0.8rem;
+    max-width: 33.333%;
+  }
+
+  .card-image {
+    flex: 2;
+    max-width: 66.667%;
+    position: relative;
+  }
+
+  .card-main {
+    display: flex;
+    flex: 1;
+    min-height: 400px;
+  }
+
+  .card-bottom {
+    display: flex;
+    border-top: 2px solid #000000;
+    min-height: 133px;
+  }
+
+  .bottom-column {
+    flex: 1;
+    padding: 1rem;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .bottom-column:last-child {
+    border-right: none;
+  }
+
+  .placeholder-image {
+    width: 70%;
+    height: 70%;
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15% auto;
+  }
+
+  .placeholder-image span {
+    color: #999;
+    font-style: italic;
+  }
+
+  .card h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #000000;
+  }
+
+  .card p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .card-simple,
+    .card-main {
+      flex-direction: column;
+    }
+
+    .card-content,
+    .card-image {
+      max-width: 100%;
+    }
+
+    .card-bottom {
+      flex-direction: column;
+    }
+
+    .bottom-column {
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bottom-column:last-child {
+      border-bottom: none;
+    }
+  }
+</style>

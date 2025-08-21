@@ -2,6 +2,9 @@
 // This is the frontmatter section - you can add JavaScript here
 import SEO from '../components/SEO.astro';
 import Analytics from '../components/Analytics.astro';
+import Navbar from '../components/Navbar.astro';
+import Card from '../components/Card.astro';
+import '../styles/global.css';
 
 const greeting = 'Hello World!';
 const currentDate = new Date().toLocaleDateString();
@@ -69,32 +72,58 @@ const structuredData = {
       }}
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&family=IM+Fell+English&family=Playfair+Display:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../styles/global.css" />
     <Analytics />
   </head>
   <body>
+    <header class="newspaper-header">
+      <h1 class="newspaper-title">Macky Beltran</h1>
+      <h2 class="newspaper-subtitle">Frontend Developer</h2>
+    </header>
+    <Navbar />
     <div class="container">
-      <h1>{greeting}</h1>
-      <p class="subtitle">Welcome to my Astro-powered portfolio!</p>
+      <div class="newspaper-content">
+        <div class="cards-section">
+          <Card
+            layout="simple"
+            title="Frontend Development"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+          />
 
-      <p>Today is: <strong>{currentDate}</strong></p>
+          <Card
+            layout="complex"
+            title="Professional Experience"
+            content="Experienced developer with expertise in modern web technologies and full-stack development. Passionate about creating efficient, scalable solutions."
+          />
+        </div>
 
-      <div class="features">
-        <div class="feature">
-          <h3>🚀 Fast</h3>
-          <p>Zero JavaScript by default means lightning-fast loading times.</p>
-        </div>
-        <div class="feature">
-          <h3>🎨 Beautiful</h3>
-          <p>Modern CSS with gradients and glassmorphism effects.</p>
-        </div>
-        <div class="feature">
-          <h3>📱 Responsive</h3>
-          <p>Looks great on all devices with responsive design.</p>
+        <div class="column-3">
+          <h2>Technical Skills</h2>
+          <p>
+            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
+            quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
+            quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio
+            dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint
+            occaecati cupiditate non provident.
+          </p>
+
+          <h3>Performance Optimization</h3>
+          <p>
+            Similique sunt in culpa qui officia deserunt mollitia animi, id est
+            laborum et dolorum fuga. Et harum quidem rerum facilis est et
+            expedita distinctio. Nam libero tempore, cum soluta nobis est
+            eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+            facere possimus.
+          </p>
         </div>
       </div>
-
-      <p class="footer-text">Built with ❤️ using Astro - Updated via GitHub!</p>
     </div>
   </body>
 </html>
