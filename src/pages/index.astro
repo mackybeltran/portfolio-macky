@@ -83,8 +83,20 @@ const structuredData = {
   </head>
   <body>
     <header class="newspaper-header">
-      <h1 class="newspaper-title">Macky Beltran</h1>
-      <h2 class="newspaper-subtitle">Frontend Developer</h2>
+      <div class="masthead-left">
+        <div class="masthead-date">
+          {
+            new Date().toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }
+        </div>
+        <div class="masthead-subtitle">Current Portfolio</div>
+      </div>
+      <h1 class="newspaper-title">MACKY BELTRAN: DEVELOPER</h1>
     </header>
     <Navbar />
     <div class="container">

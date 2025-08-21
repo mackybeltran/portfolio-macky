@@ -116,20 +116,44 @@ h1 {
   background: #ffffff;
   color: #000000;
   text-align: center;
-  padding: 2.5rem 0 0 0;
-  border-bottom: 2px solid #000000;
+  padding: 1.5rem 0 0 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
+.masthead-left {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  margin-left: -500px;
+}
+
+.masthead-date {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #2c2c2c;
+  margin-bottom: 0.5rem;
+}
+
+.masthead-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .newspaper-title {
-  font-size: 4.5rem;
+  font-size: 3rem;
   font-weight: normal;
   margin: 0;
   font-family:
     'FrizQuadrata', 'Playfair Display', 'Times New Roman', Times, serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
   line-height: 1;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
