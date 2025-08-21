@@ -1,0 +1,193 @@
+---
+// Navbar component with newspaper-style sections
+const navItems = [
+  { name: 'Projects', href: '/projects' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Resume', href: '/Resume-MACKY-BELTRAN.pdf' },
+];
+
+const currentDate = new Date().toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-menu" id="nav-menu">
+      <a href="/projects" class="nav-link">Projects</a>
+      <a href="/about" class="nav-link">About</a>
+
+      <div class="nav-date">
+        <span>{currentDate}</span>
+      </div>
+
+      <a href="/contact" class="nav-link">Contact</a>
+      <a
+        href="/Resume-MACKY-BELTRAN-aug2025.pdf"
+        class="nav-link"
+        download="Resume-MACKY-BELTRAN-aug2025.pdf"
+      >
+        Resume
+      </a>
+    </div>
+
+    <div class="nav-toggle" id="nav-toggle">
+      <span class="hamburger"></span>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: relative;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 2px solid #c0c0b0;
+    z-index: 1000;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #c0c0b0;
+    border-bottom: 1px solid #c0c0b0;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  .brand-link {
+    display: none;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .nav-link {
+    color: #2c2c2c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav-link:last-child {
+    border-right: none;
+  }
+
+  .nav-date {
+    flex: 2;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #2c2c2c;
+  }
+
+  .nav-link:hover {
+    color: #000000;
+    background: #d8d8c8;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .hamburger {
+    width: 25px;
+    height: 3px;
+    background: #000000;
+    margin: 3px 0;
+    transition: 0.3s;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .nav-menu {
+      flex-direction: column;
+      background: #e8e8d8;
+      width: 100%;
+      text-align: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      border-right: none;
+      border-bottom: 1px solid #c0c0b0;
+      padding: 1rem;
+    }
+
+    .nav-link:last-child {
+      border-bottom: none;
+    }
+
+    .nav-date {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-toggle.active .hamburger:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active .hamburger:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle.active .hamburger:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  navToggle?.addEventListener('click', () => {
+    navMenu?.classList.toggle('active');
+    navToggle.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking on a link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu?.classList.remove('active');
+      navToggle?.classList.remove('active');
+    });
+  });
+</script>
